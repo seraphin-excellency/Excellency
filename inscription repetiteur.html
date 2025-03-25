@@ -1,0 +1,99 @@
+<html>
+<head>
+    <title>Inscription Répétiteur</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Inscription Répétiteur</h1>
+        <p>Partagez vos connaissances et aidez les élèves à réussir !</p>
+        
+        <form action="#" method="POST">
+            <label for="nom">Nom et pr&eacute;nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="age">&Acirc;ge :</label>
+            <input type="text" id="age" required>
+
+            <label for="email">E-mail :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telephone">Téléphone :</label>
+            <input type="tel" id="telephone" name="telephone" required>
+
+            <label for="niveau">Niveau d'études :</label>
+            <input type="text" id="niveau" name="niveau" required>
+
+            <label for="ville">Ville :</label>
+            <input type="text" id="ville" name="ville" required>
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+
+            <label>Matières que vous enseignez :</label>
+            <div id="checkbox-group">
+                <label><input type="checkbox" name="matieres" id="Mathématiques"> Mathématiques</label>
+                <label><input type="checkbox" name="matieres" id="Français"> Français</label>
+                <label><input type="checkbox" name="matieres" id="Sciences"> Sciences</label>
+                <label><input type="checkbox" name="matieres" id="Anglais"> Anglais</label>
+                <label><input type="checkbox" name="matieres" id="Autres"> Autres : <input type="text" name="autres_matieres"></label>
+            </div>
+
+            <label for="experience">Années d'expérience en enseignement :</label>
+            <input type="number" id="experience" name="experience" required>
+
+            <label>Type de cours proposé :</label>
+            <div class="radio-group">
+                <label><input type="radio" name="type_cours" value="présentiel"> En présentiel</label>
+                <label><input type="radio" name="type_cours" value="en ligne"> En ligne</label>
+            </div>
+
+            <label for="disponibilites">Disponibilités :</label>
+            <textarea id="disponibilites" name="disponibilites"></textarea>
+
+            <label for="tarif">Tarif horaire souhaité :</label>
+            <input type="text" name="tarif" id="tarif">
+            <label for="source">Comment avez-vous entendu parler de nous ?</label>
+            <textarea id="source" name="source"></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+    <script>
+       
+const form = document.querySelector('form');
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("nom").value;
+    let email = document.getElementById("email").value;
+    let age = document.getElementById("age").value;
+    let tel = document.getElementById("telephone").value;
+    let town = document.getElementById("ville").value;
+    let hour = document.getElementById("tarif").value;
+    let year = document.getElementById("experience").value;
+    let teach = [];
+
+    if (document.getElementById("nom") && document.getElementById("email") && document.getElementById("age") && document.getElementById("telephone") && document.getElementById("ville") && document.getElementById("tarif") && document.getElementById("experience")) {
+        document.querySelectorAll('input[name="matieres"]:checked').forEach(checkbox => {
+            teach.push(checkbox.id); 
+        })
+
+        localStorage.setItem("nom", name);
+        localStorage.setItem("email", email);
+        localStorage.setItem("age", age);
+        localStorage.setItem("telephone", tel);
+        localStorage.setItem("ville", town);
+        localStorage.setItem("tarif", hour);
+        localStorage.setItem("experience", year)
+        localStorage.setItem("teach", JSON.stringify(teach));
+
+        window.location.href = "interface repetiteur.html";
+    } else {
+        console.error("Certains éléments HTML n'existent pas.");
+    }
+});
+
+
+    </script>
+</body>
+</html>

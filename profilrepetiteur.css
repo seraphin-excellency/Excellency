@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 130%;
+}
+.main-content{
+    background-color: #FFDEE9;
+    background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+    
+width: 100vw;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+font-family: Arial, sans-serif;
+}
+
+.bod{
+    background-color: white;
+    border-radius: 7%;
+    overflow: hidden;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    height: 590px;
+}
+
+
+.first-image{
+    width: 500px;
+    height: 275px;
+    background-image: url(logo.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    
+}
+
+
+.photo-profile{
+    background-image: url(noname.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%,50%);
+    object-fit: cover;
+    
+
+}
+
+.information{
+    margin-top: 85px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+}
+
+.nom,.age{
+    font-size: 25px;
+}
+
+.photo{
+    width: 25px;
+    height: 25px;
+}
+
+
+img{ 
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+}
+
+.image-button {
+    position: absolute; 
+    bottom: 0; 
+    left: 240px;
+    transform: translate(-15%,250%);
+    display: flex; 
+    align-items: center; 
+    background-color: #f0f0f0; 
+    padding: 5px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+.image-button img {
+    font-size: 24px;
+    vertical-align: middle; 
+}
+
+
+#choose-text {
+    font-size: 14px; 
+    margin-left: 5px; 
+    display: none;
+}
+
+.ville{
+    display: inline-flex;
+}
+    
+
+

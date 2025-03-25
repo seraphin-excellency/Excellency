@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-image: url(image.jpg);
+}
+
+
+
+.navbar{
+    width: 1px;
+    height: 75px;
+    margin: auto;
+}
+
+.icon{
+   
+    background: linear-gradient(to top,rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%, url(logo.jpg));
+    background-position: center;
+    background-size: cover;
+    height: 109vh;
+}
+
+.logo{
+    color:#ff7200;
+    font-size: 35px;
+    font-family: arial;
+    padding-left: 20px;
+    float: left;
+    padding-top: 10px;
+}
+
+.menu{
+    width: 1px;
+    float: left;
+
+}
+
+ul{
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul li{
+    list-style: none;
+    margin-left: 62px;
+    margin-top: 27%;
+    font-size: 14%;
+}
+
+ul li a{
+    text-decoration: none;
+    color:#ff7200;
+    font-family: arial;
+    font-weight: bold;
+    transition:0.4s ease-in-out;
+}
+
+ul li a:hover{
+    color:#f4f4f4;
+}
+
+.content{
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    color: #fff;
+    position: relative;
+}
+
+.content .par{
+    padding-left: 20px;
+    padding-bottom: 25px;
+    font-family: arial;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+}
+
+.content h1{
+    font-family: 'Times New Roman';
+    font-size: 50px;
+    padding-left: 20px;
+    margin-top: 9%;
+    letter-spacing: 2px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.btn:hover {
+    background-color: #218838;
+}
+
+.content span{
+    color: #ff7200;
+    font-size: 60px;
+}

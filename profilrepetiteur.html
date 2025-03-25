@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord des parents</title>
+    <link rel="stylesheet" href="profilrepetiteur.css">
+    <link rel="stylesheet" href="stylepars.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+   <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="logo.jpg" alt="Logo" class="logo"><span class=".nom">EXCELLENCY</span>
+                <h1>Espace Repetiteur</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="profilrepetiteur.html" class="active"><i class="fas fa-user"></i> Profil</a></li>
+                    <li><a href="chatrepetiteur.html"><i class="fas fa-comments"></i> Chat</a></li>
+                    <li><a href="offrerepetiteur.html"><i class="fas fa-tags"></i> Offres</a></li>
+                    <li><a href="notificationrepetiteur.html"><i class="fas fa-bell"></i> Notifications <span class="notification-count">3</span></a></li>
+            
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content"> 
+            <div class="bod">
+                <div class="first-image">
+                    <div class="photo-profile"></div>
+                    <div class="image-button">
+                        <img class="photo" src="photo.jpg" name="image-outline">
+                        <span id="choose-text">Choisir une photo de profil</span>
+                    </div>
+                    <input type="file" id="photo-input" accept="image/*" style="display: none;">
+                </div>
+                <div class="information">
+                    <div class="infos">
+                        <div class="repetiteur">
+                            <h3 class="nom">nom du repetiteur</h3>
+                            <p class="age">J'ai: <span class="ages">tel age</span> ans</p>
+                            <p class="numero">Mon numero de telephone est: <span class="telephone">tel</span></p>
+                        </div>
+                        <p class="e-mail">Adresse e-mail: <span class="email"></span></p>
+                        <p class="ville"><img src="location.jpg" alt="localisation"><span class="town">Ville</span></p>
+                        
+                        <div class="mini-cv">
+                            <p class="matieres">la\Les mati&egrave;re(s) que j'enseigne sont: <span class="matiere">telle telle telle</span></p>
+
+        
+                        </div>
+                    
+                        <p class="horaire">Tarif horaire: <span class="hour">tel tel heure</span></p>
+                        <p class="experience">J'ai: <span class="expert">tel</span> ann&eacute;e(s) d'exp&eacute;rience(s) </p>
+                    </div>
+                </div>
+            </div>
+            
+        <script>
+            document.querySelector('.image-button').addEventListener('click', function() {
+            document.getElementById('photo-input').click();
+        });
+        
+        document.getElementById('photo-input').addEventListener('change', function(e) {
+            const file = this.files[0];
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                document.querySelector('.photo-profile').style.backgroundImage = `url(${event.target.result})`;
+            };
+            reader.readAsDataURL(file);
+        });
+        const imageButton = document.querySelector('.image-button');
+        imageButton.addEventListener('mouseover', function() {
+            document.getElementById('choose-text').style.display = 'block';
+        });
+        imageButton.addEventListener('mouseout', function() {
+            document.getElementById('choose-text').style.display = 'none';
+        });
+        
+        
+        </script>
+        
+            <script>
+                // Récupérer les éléments par leur classe
+        let nomElement = document.getElementsByClassName("nom")[0];
+        let agesElement = document.getElementsByClassName("ages")[0];
+        let emailElement = document.getElementsByClassName("email")[0];
+        let telephoneElement = document.getElementsByClassName("telephone")[0];
+        let townElement = document.getElementsByClassName("town")[0];
+        let hourElement = document.getElementsByClassName("hour")[0];
+        let expertElement = document.getElementsByClassName("expert")[0];
+        let matieresTextElement = document.querySelector(".matieres");
+        
+        // Mettre à jour le contenu des éléments avec les données stockées
+        nomElement.textContent = localStorage.getItem("nom") || "Non défini";
+        agesElement.textContent = localStorage.getItem("age") || "Non défini";
+        emailElement.textContent = localStorage.getItem("email") || "Non défini";
+        telephoneElement.textContent = localStorage.getItem("telephone") || "Non défini";
+        townElement.textContent = localStorage.getItem("ville") || "Non défini";
+        hourElement.textContent = localStorage.getItem("tarif") || "Non défini";
+        expertElement.textContent = localStorage.getItem("experience") || "Non défini";
+        
+        let teach = JSON.parse(localStorage.getItem("teach")) || [];
+        
+        // Ajuster le texte en fonction du nombre de matières
+        if (teach.length === 1) {
+            matieresTextElement.textContent = `La matière que j'enseigne est: ${teach[0]}`;
+        } else if (teach.length > 1) {
+            matieresTextElement.textContent = `Les matières que j'enseigne sont: ${teach.join(", ")}`;
+        } else {
+            matieresTextElement.textContent = "Non défini";
+        }
+        
+            </script>
+        
+        </main>
+    </div>
+
+
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous"></script> 
+</body>
+</html>

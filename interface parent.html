@@ -1,0 +1,112 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord des parents</title>
+    <link rel="stylesheet" href="profilparent.css">
+    <link rel="stylesheet" href="stylepars.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="logo.jpg" alt="Logo" class="logo"> EXCELLENCY
+                <h1>Espace Parents</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="profilparent.html" class="active"><i class="fas fa-user"></i> Profil</a></li>
+                    <li><a href="chatparent.html"><i class="fas fa-comments"></i> Chat</a></li>
+                    <li><a href="offreparent.html"><i class="fas fa-tags"></i> Offres</a></li>
+                    <li><a href="notificationparent.html"><i class="fas fa-bell"></i> Notifications <span class="notification-count">3</span></a></li>
+            
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="body">
+                <div class="first-image">
+                <div class="photo-profile"></div>
+                <div class="image-button">
+                    <img class="photo" src="photo.jpg" name="image-outline">
+                    <span id="choose-text">Choisir une photo de profil</span>
+                </div>
+                <input type="file" id="photo-input" accept="image/*" style="display: none;">
+            </div>
+                <div class="infos">
+                    <div id="parent">
+                        <h3 id="nom">nom du parent</h3>
+                    </div>
+                    <p id="email">Adresse e-mail</p>
+                    <p class="ville"><img src="location.jpg" alt="localisation"><span id="ville">Ville</span></p>
+        
+                    <div id="enfant">
+                        <h3>Informations de l'enfant : <h3><span id="eleve"></span></h3>
+                        <p>L'age de l'enfant est : <span id="age"></span></p>
+                        <p id="classe">Le niveau de l'enfant est : <span id="classes">telle classe</span></p>
+                    </div>
+                    <p id="matiere">la(les)matière(s) que j'aimerais améliorer est(sont) : <br>
+                        <span id="matieres"></span></p>
+                    <p id="horaire">disponibilit&eacute; et horaire : <br><span id="heure">tel tel heure</span></p>
+                </div>
+        
+            </div>
+            
+            <script>
+               document.querySelector('.image-button').addEventListener('click', function() {
+            document.getElementById('photo-input').click();
+        });
+        
+        document.getElementById('photo-input').addEventListener('change', function(e) {
+            const file = this.files[0];
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                document.querySelector('.photo-profile').style.backgroundImage = `url(${event.target.result})`;
+            };
+            reader.readAsDataURL(file);
+        });
+                const imageButton = document.querySelector('.image-button');
+        imageButton.addEventListener('mouseover', function() {
+            document.getElementById('choose-text').style.display = 'block';
+        });
+        imageButton.addEventListener('mouseout', function() {
+            document.getElementById('choose-text').style.display = 'none';
+        });
+            </script>
+            <script>
+                let parentName = localStorage.getItem("parentName");
+                let parentEmail = localStorage.getItem("parentEmail");
+                let parentCity = localStorage.getItem("parentCity");
+                let studentName = localStorage.getItem("studentName");
+                let studentAge = localStorage.getItem("studentAge");
+                let studentClass = localStorage.getItem("studentClass");
+                let availability = localStorage.getItem("availability");
+                let subjectsToImprove = JSON.parse(localStorage.getItem("subjectsToImprove"));
+        
+                document.getElementById("nom").innerText = parentName;
+                document.getElementById("email").innerText = parentEmail;
+                document.getElementById("ville").innerText = parentCity;
+                document.getElementById("eleve").innerText = studentName;
+                document.getElementById("age").innerText = studentAge + " ans";
+                document.getElementById("classes").innerText = studentClass;
+        
+                if (subjectsToImprove) {
+                    let subjectsText = subjectsToImprove.join(", ");
+                    document.getElementById("matieres").innerText = subjectsText;
+                } else {
+                    document.getElementById("matieres").innerText = "Aucune";
+                }
+        
+                document.getElementById("heure").innerText = availability;
+        
+            </script>
+        </main>
+    </div>
+
+
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous"></script> 
+</body>
+</html>

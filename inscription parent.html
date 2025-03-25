@@ -1,0 +1,96 @@
+<html>
+<head>
+   <link rel="stylesheet" href="styles.css">
+   <title>Inscription Parent</title>
+</head>
+<body>
+    <div class="container">
+        <form action="#" id="signupForm" method="post">
+            <h1>Inscription Parent</h1>
+            <fieldset>
+                <legend>Informations personnelles :</legend>
+                <label for="nom">Nom et prénom:</label>
+                <input type="text" id="nom" name="nom" required>
+
+                <label for="email">E-mail :</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="telephone">Téléphone :</label>
+                <input type="tel" id="telephone" name="telephone" required>
+
+                <label for="ville">Ville :</label>
+                <input type="text" name="ville" id="ville" required>
+                <label for="password">Mot de passe :</label>
+                <input type="password" name="password" id="password" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Informations sur l'élève :</legend>
+                <label for="nomEleve">Nom de l'élève :</label>
+                <input type="text" id="nomEleve" name="nomEleve" required>
+
+                <label for="ageEleve">Âge de l'élève :</label>
+                <input type="number" id="ageEleve" name="ageEleve" required> ans
+
+                <label for="niveauScolaire">Niveau scolaire :</label>
+                <input type="text" id="niveauScolaire" name="niveauScolaire" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Matières à améliorer :</legend>
+                <label><input type="checkbox" name="matieres" value="Mathématiques"> Mathématiques</label><br>
+                <label><input type="checkbox" name="matieres" value="Français"> Français</label><br>
+                <label><input type="checkbox" name="matieres" value="Sciences"> Sciences</label><br>
+                <label><input type="checkbox" name="matieres" value="Anglais"> Anglais</label><br>
+                <label><input type="checkbox" name="matieres" value="Autres"> Autres :</label>
+                <input type="text" name="autresMatieres">
+            </fieldset>
+
+            <fieldset>
+                <legend>Préférences de cours :</legend>
+                <label>Type de cours souhaité :</label><br>
+                <label><input type="radio" name="typeCours" value="enPresentiel"> En présentiel</label><br>
+                <label><input type="radio" name="typeCours" value="enLigne"> En ligne</label><br>
+
+                <label for="disponibilites">Disponibilités et horaires escompt&eacute;es :</label><br>
+                <textarea id="disponibilites" name="disponibilites" rows="4"></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>Comment avez-vous entendu parler de nous ?</legend>
+                <input type="text" name="source">
+            </fieldset>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let parentName = document.getElementById("nom").value;
+            let parentEmail = document.getElementById("email").value;
+            let parentCity = document.getElementById("ville").value;
+            let studentName = document.getElementById("nomEleve").value;
+            let studentAge = document.getElementById("ageEleve").value;
+            let studentClass = document.getElementById("niveauScolaire").value;
+            let availability = document.getElementById("disponibilites").value;
+
+            let subjectsToImprove = [];
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                subjectsToImprove.push(checkbox.value);
+            });
+
+            localStorage.setItem("parentName", parentName);
+            localStorage.setItem("parentEmail", parentEmail);
+            localStorage.setItem("parentCity", parentCity);
+            localStorage.setItem("studentName", studentName);
+            localStorage.setItem("studentAge", studentAge);
+            localStorage.setItem("studentClass", studentClass);
+            localStorage.setItem("availability", availability);
+            localStorage.setItem("subjectsToImprove", JSON.stringify(subjectsToImprove));
+
+            window.location.href = "interface parent.html";
+        });
+    </script>
+</body>
+</html>

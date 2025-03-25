@@ -1,0 +1,57 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="styles.css">
+      <title>
+        Formulaire de connexion
+      </title>
+    </head>
+    <body>
+      <div class="container">
+        <h1>CONNEXION</h1>
+        <p>Remplissez ce formulaire pour vous connecter!</p>
+        <form  id="signupform">
+            <fieldset>
+                <legend>Informations personnelles :</legend>
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required>
+
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="nom" name="prenom" required>
+
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="telephone">Téléphone :</label>
+                <input type="tel" id="telephone" name="telephone" required>
+                <label for="telephone">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+            </fieldset>
+           <p> Se connecter comme : </p> <br>
+            <div class="btn-container">
+              <div class="int"><button type="submit" onclick="fonction(event1)">PARENT</button></div>
+              <div class="intr"><button type="submit" onclick="fonction(event2)">REPETITEUR</a></div>
+          </div>
+
+          </form>
+      </div>
+<script>
+  document.getElementById("signupForm").addEventListener("submit", function(event1) {
+    event.preventDefault();
+            let parentName = document.getElementById("nom").value;
+            let parentEmail = document.getElementById("email").value;
+            localStorage.setItem("parentName", parentName);
+            localStorage.setItem("parentEmail", parentEmail);
+          window.location.href= "interface parent.html";  
+  })
+  document.getElementById("signupForm").addEventListener("submit", function(event2) {
+    event.preventDefault();
+            let parentName = document.getElementById("nom").value;
+            let parentEmail = document.getElementById("email").value;
+            localStorage.setItem("parentName", parentName);
+            localStorage.setItem("parentEmail", parentEmail);
+            window.location.href ="interface repetiteur.html";
+  })    
+</script>
+
+    </body>
+</html>

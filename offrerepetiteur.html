@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demander une offre - Parent Répétiteur</title>
+    <link rel="stylesheet" href="stylepars.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Couleurs principales */
+        :root {
+            --primary-color: #001f3f; /* Bleu nuit */
+            --secondary-color: #ff8c00; /* Orange */
+            --text-color: #fff;
+            --background-color: #f0f8ff; /* Bleu très clair */
+            --form-bg-color: #fff;
+            --input-border-color: #ccc;
+        }
+
+        .chat {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* En-tête */
+        .header {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 30px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header img {
+            height: 50px; /* Ajustez la taille du logo ici */
+            margin-right: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        /* Formulaire de demande d'offre */
+        .offer-form {
+            background-color: var(--form-bg-color);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .offer-form h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;    color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--input-border-color);
+            border-radius: 5px;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--secondary-color);
+        }
+
+        .form-group textarea {
+            resize: vertical; /* Permettre le redimensionnement vertical */
+            height: 150px;
+        }
+
+        /* Bouton de soumission */
+        .submit-button {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto; /* Centrer le bouton */
+        }
+
+        .submit-button:hover {
+            background-color: #e67300;
+        }
+
+        /* Adaptations pour mobile */
+        @media (max-width: 600px) {
+            .header {
+                padding: 15px 0;
+            }
+
+            .header img {
+                height: 40px;
+                margin-right: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.7em;
+            }
+
+            .offer-form {
+                padding: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-group label {
+                font-size: 0.9em;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 10px 12px;
+                font-size: 0.9em;
+            }
+
+            .submit-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="logo.jpg" alt="Logo" class="logo"><span class=".nom">EXCELLENCY</span>
+                <h1>Espace Repetiteur</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="profilrepetiteur.html" class="active"><i class="fas fa-user"></i> Profil</a></li>
+                    <li><a href="chatrepetiteur.html"><i class="fas fa-comments"></i> Chat</a></li>
+                    <li><a href="offrerepetiteur.html"><i class="fas fa-tags"></i> Offres</a></li>
+                    <li><a href="notificationrepetiteur.html"><i class="fas fa-bell"></i> Notifications <span class="notification-count">3</span></a></li>
+            
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+    <div class="header">
+        <img src="logo.jpg" alt="Logo du site">
+        <h1>Demander une offre</h1>
+    </div>
+
+    <div class="offer-form">
+        <h2>Décrivez votre besoin</h2>
+        <form id="offerRequestForm">
+            <div class="form-group">
+                <label for="subject">Matière concernée:</label>
+                <input type="text" id="subject" name="subject" placeholder="Mathématiques, Français, Physique..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="level">Niveau scolaire:</label>
+                <select id="level" name="level" required>
+                    <option value="">Sélectionnez un niveau</option>
+                    <option value="primaire">Primaire</option>
+                    <option value="college">Collège</option>
+                    <option value="lycee">Lycée</option>
+                    <option value="superieur">Supérieur</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description détaillée de votre besoin:</label>
+                <textarea id="description" name="description" placeholder="Décrivez précisément ce que vous recherchez..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="budget">Budget (facultatif):</label>
+                <input type="number" id="budget" name="budget" placeholder="Indiquez votre budget maximum">
+            </div>
+
+            <button type="submit" class="submit-button">Envoyer ma demande</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('offerRequestForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche la soumission par défaut
+
+            // Récupérer les valeurs des champs
+            const subject = document.getElementById('subject').value;
+            const level = document.getElementById('level').value;
+            const description = document.getElementById('description').value;
+            const budget = document.getElementById('budget').value;
+
+            // Ici, vous pouvez envoyer les données à votre serveur
+            // (par exemple, avec fetch ou XMLHttpRequest)
+
+            // Afficher un message de confirmation (à personnaliser)
+            alert('Votre demande a été envoyée avec succès!');
+
+            // Réinitialiser le formulaire (facultatif)
+            document.getElementById('offerRequestForm').reset();
+        });
+    </script>
+        </main>
+    </div>
+</body>
+</html>

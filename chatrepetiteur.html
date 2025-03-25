@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>EXCELLENCY</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="stylepars.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        /* Couleurs principales */
+        :root {
+            --primary-color: #001f3f; /* Bleu nuit */
+            --secondary-color: #ff8c00; /* Orange */
+            --text-color: #fff;
+            --background-color: #f4f4f4;
+            --message-bg-color: #e6e6e6;
+            --message-sent-bg-color: #0056b3; /* Bleu plus clair pour les messages envoyés */
+        }
+        .chat {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Empêche le défilement vertical */
+        }
+        
+
+        /* En-tête avec logo et titre */
+        .header {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 15px 0;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Centrer horizontalement */
+            align-items: center; /* Centrer verticalement */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            height: 50px; /* Ajustez la taille du logo ici */
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        /* Zone de messages */
+        #messages {
+            height: 60vh; /* Prend la majorité de la hauteur visible */
+            width: 90%;
+            max-width: 800px;
+            overflow-y: auto; /* Ajoute une barre de défilement si nécessaire */
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+            text-align: left; /* Alignement du texte à gauche */
+        }
+
+        #messages div {
+            padding: 8px 12px;
+            border-radius: 15px;
+            margin-bottom: 8px;
+            word-wrap: break-word; /* Empêche le texte long de dépasser */
+            background-color: var(--message-bg-color);
+            color: var(--primary-color);
+            display: inline-block; /* Important pour la largeur automatique */
+            max-width: 70%; /* Empêche les messages de prendre toute la largeur */
+        }
+
+        /* Style spécifique pour les messages envoyés (à adapter si nécessaire) */
+        #messages div.sent {
+            background-color: var(--message-sent-bg-color);
+            color: var(--text-color);
+            align-self: flex-end; /* Aligne les messages envoyés à droite */
+        }
+
+        /* Zone de saisie et bouton */
+        .input-container {
+            display: flex;
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        #messageInput {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            margin-right: 10px;
+            font-size: 1em;
+            outline: none;
+            box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        button {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #e67300;
+        }
+
+        /* Adaptations pour mobile (responsive design) */
+        @media (max-width: 600px) {
+            .header {
+                padding: 10px 0;
+            }
+
+            .header img {
+                height: 40px;
+                margin-right: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            #messages {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .input-container {
+                width: 95%;
+            }
+
+            #messageInput {
+                padding: 10px 12px;
+                font-size: 0.9em;
+            }
+
+            button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="logo.jpg" alt="Logo" class="logo"><span class=".nom">EXCELLENCY</span>
+                <h1>Espace Repetiteur</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="profilrepetiteur.html" class="active"><i class="fas fa-user"></i> Profil</a></li>
+                    <li><a href="chatrepetiteur.html"><i class="fas fa-comments"></i> Chat</a></li>
+                    <li><a href="offrerepetiteur.html"><i class="fas fa-tags"></i> Offres</a></li>
+                    <li><a href="notificationrepetiteur.html"><i class="fas fa-bell"></i> Notifications <span class="notification-count">3</span></a></li>
+            
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="header">
+                <img src="logo.jpg" alt="Logo du site"> 
+                <h1>Chat en Temps Réel</h1>
+            </div>
+        
+            <div id="messages"></div>
+        
+            <div class="input-container">
+                <input id="messageInput" placeholder="Écris un message..." />
+                <button onclick="sendMessage()">Envoyer</button>
+            </div>
+          
+            <script>
+                const socket = io();
+                const notificationSound = new Audio("notification.mp3"); // Son de notification
+                let originalTitle = document.title;
+                let isBlinking = false;
+                let blinkInterval;
+        
+                socket.on("chat message", (msg) => {
+                    const div = document.createElement("div");
+                    div.textContent = msg;
+                    document.getElementById("messages").appendChild(div);
+                    div.scrollIntoView({ behavior: "smooth" });  //Scroll automatiquement vers le bas
+        
+                    // Jouer le son
+                    notificationSound.play();
+        
+                    // Faire clignoter le titre si la page est inactive
+                    if (document.hidden) {
+                        startBlinking();
+                    }
+                });
+        
+                function sendMessage() {
+                    const input = document.getElementById("messageInput");
+                    if (input.value.trim()) {
+                        socket.emit("chat message", input.value);
+                        input.value = "";
+                    }
+                }
+        
+                // Gérer le clignotement du titre
+                function startBlinking() {
+                    if (isBlinking) return;
+                    isBlinking = true;
+                    blinkInterval = setInterval(() => {
+                        document.title = document.title === "📩 Nouveau message !" ? originalTitle : "📩 Nouveau message !";
+                    }, 1000);
+                }
+        
+                // Arrêter le clignotement quand la page est active
+                document.addEventListener("visibilitychange", () => {
+                    if (!document.hidden) {
+                        isBlinking = false;
+                        clearInterval(blinkInterval);
+                        document.title = originalTitle;
+                    }
+                });
+            </script>
+
+        </main>
+    </div>
+</body>
+</html>

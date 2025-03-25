@@ -1,0 +1,214 @@
+#a-propos {
+    background-color: #fff;
+    padding: 40px;
+    text-align: center;
+    margin-top: 50px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.a-propos-contenu {
+    max-width: 900px; /* Augmenter la largeur maximale */
+    margin: 0 auto;
+}
+
+.a-propos-contenu h2 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.a-propos-boxes {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux boîtes de passer à la ligne si l'espace est insuffisant */
+    justify-content: center; /* Centre les boîtes horizontalement */
+}
+
+.a-propos-box {
+    width: 220px; /* Largeur des boîtes */
+    height: 220px; /* Hauteur des boîtes */
+    background-color: var(--background-color); /* Couleur de fond plus claire */
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease; /* Animation au survol */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid transparent; /* Bordure transparente par défaut */
+}
+
+.a-propos-box:hover {
+    transform: translateY(-5px); /* Léger soulèvement au survol */
+    border-color: var(--secondary-color); /* Bordure orange au survol */
+}
+
+.a-propos-box i {
+    font-size: 3em;
+    color: var(--secondary-color); /* Icônes orange */
+    margin-bottom: 15px;
+}
+
+.a-propos-box p {
+    font-size: 1em;
+    color: var(--primary-color); /* Texte bleu nuit */
+    margin: 0;
+}
+
+/* Media query pour les petits écrans */
+@media (max-width: 600px) {
+    .a-propos-boxes {
+        flex-direction:row-reverse ; /* Empile les boîtes horizontalement sur les petits écrans */
+        align-items: center;
+    }
+
+    .a-propos-box {
+        width: 80%; /* Prend plus de largeur sur les petits écrans */
+        margin: 10px 0; /* Réduit les marges */
+    }
+}
+• {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    background-image: url("image.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    color: white;
+    min-height: 100vh; 
+}
+
+.main {
+    width: 100%; 
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.navbar {
+    width: 85%;
+    margin: auto;
+    height: 80px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 50px;
+    margin-right: 10px;
+    border-radius: 30%; 
+}
+
+.logo-text {
+    color: #ff7200;
+    font-size: 35px;
+    font-family: arial;
+}
+
+.menu ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu ul li {
+    list-style: none;
+    margin-left: 30px; 
+    font-size: 16px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #ff7200;
+    font-family: arial;
+    font-weight: bold;
+    transition: color 0.4s ease-in-out;
+}
+
+.menu ul li a:hover {
+    color: #f4f4f4;
+}
+
+.content {
+    width: 85%;
+    margin: auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.content h1 {
+    font-family: 'Times New Roman', serif;
+    font-size: 3em;
+    margin-top: 5%;
+    letter-spacing: 2px;
+}
+
+.content .par {
+    font-family: arial;
+    letter-spacing: 1.2px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.content span {
+    color: #ff7200;
+    font-size: 1.2em;
+}
+
+.btn-container {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #ff7200;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ff7200;
+}
+
+
+@media (max-width: 800px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+    }
+
+    .menu ul {
+        flex-direction: column;
+    }
+
+    .menu ul li {
+        margin: 10px 0;
+    }
+
+    .content {
+        text-align: center;
+    }
+
+    .btn-container {
+        flex-direction: column; 
+    }
+} 
