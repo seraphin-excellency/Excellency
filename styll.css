@@ -78,7 +78,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    background-image: url("image.jpg");
+    background-image: url("/assets/images/image.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

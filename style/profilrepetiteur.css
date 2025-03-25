@@ -28,7 +28,7 @@ font-family: Arial, sans-serif;
 .first-image{
     width: 500px;
     height: 275px;
-    background-image: url(logo.jpg);
+    background-image: url(../assets/images/logo.jpg);
     background-position: center;
     background-size: cover;
     position: relative;
@@ -37,7 +37,7 @@ font-family: Arial, sans-serif;
 
 
 .photo-profile{
-    background-image: url(noname.jpg);
+    background-image: url(../assets/images/noname.jpg);
     background-position: center;
     background-size: cover;
     position: relative;
