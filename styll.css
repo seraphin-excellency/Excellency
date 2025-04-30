@@ -5,7 +5,17 @@
     margin-top: 50px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
+:root {
+    --primary-color: #011930; /* Bleu nuit */
+    --secondary-color: #ff8c00; /* Orange */
+    --text-color: #fff;
+    --background-color:rgb(234, 203, 145);
+    --message-bg-color: #e6e6e6;
+    --message-sent-bg-color: #0056b3; /* Bleu plus clair pour les messages envoyés */
+}
+.a-propos{background-color: #0056b3;
 
+}
 .a-propos-contenu {
     max-width: 900px; /* Augmenter la largeur maximale */
     margin: 0 auto;
@@ -78,7 +88,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    background-image: url("/assets/images/image.jpg");
+    background-image: url("assets/images/image.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
